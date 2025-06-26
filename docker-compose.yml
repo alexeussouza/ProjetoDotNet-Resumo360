@@ -1,0 +1,54 @@
+version: "3.9"
+
+services:
+  db:
+    image: postgres:16
+    container_name: db_despesas
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: db_despesas
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+  api:
+    build:
+      context: ./backend/ApiDespesas
+    container_name: api_despesas
+    restart: always
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ASPNETCORE_URLS: http://+:8080
+      JwtSettings__Secret: Lx2Wj87YpZVqFutN1MBP9kEhOsTd6rQvAnGmU4XeCshbRYlpQH
+      ConnectionStrings__DefaultConnection: Host=db;Port=5432;Database=db_despesas;Username=postgres;Password=postgres
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+
+  frontend:
+    build:
+      context: ./frontend
+    container_name: frontend_app
+    restart: always
+    depends_on:
+      - api
+    # build deve gerar os arquivos em /frontend/build
+
+  nginx:
+    image: nginx:alpine
+    container_name: nginx_gateway
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./frontend/build:/usr/share/nginx/html:ro
+    depends_on:
+      - api
+      - frontend
+
+volumes:
+  pgdata:

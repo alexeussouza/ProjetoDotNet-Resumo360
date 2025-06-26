@@ -1,0 +1,31 @@
+.dashboard-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding-bottom: 2rem;
+}
+
+.resumo-mensal ul {
+  list-style-type: none;
+  padding: 0;
+  margin-bottom: 2rem;
+}
+
+.resumo-mensal li {
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+}
+
+.avisos p {
+  background-color: #fff7cd;
+  border-left: 5px solid #fbc02d;
+  padding: 0.5rem 1rem;
+  margin-bottom: 0.5rem;
+  border-radius: 4px;
+}
+
+.graficos {
+  background-color: #f4f4f4;
+  padding: 1rem;
+  border-radius: 6px;
+  text-align: center;
+}

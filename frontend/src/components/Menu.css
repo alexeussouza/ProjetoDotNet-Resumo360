@@ -1,0 +1,36 @@
+.menu-container {
+  background-color: #004080;
+  color: white;
+  padding: 1rem;
+  min-height: 100vh;
+  width: 220px;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+.menu-container ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.menu-container li {
+  margin-bottom: 1rem;
+}
+
+.menu-container a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.menu-container .ativo a {
+  text-decoration: underline;
+}
+
+.menu-container button {
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
